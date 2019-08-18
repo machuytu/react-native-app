@@ -1,15 +1,33 @@
-import React, {Component} from 'react';
-import { AppRegistry, View, Text} from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, Navigator, Text } from 'react-native';
 import Connguoi from "./Components/Connguoi.js";
 
+import MaHinhA from "./Components/ManHinhA.js";
+import MaHinhB from "./Components/ManHinhB.js";
+import MaHinhC from "./Components/ManHinhC.js";
+
 export default class AwesomeProject extends Component {
+  renderScene(route, Navigator) {
+    switch (route.name) {
+      case "mhA": return (
+        <MaHinhA />
+      )
+      case "mhB": return (
+        <MaHinhB />
+      )
+      case "mhC": return (
+        <MaHinhC />
+      )
+    }
+  }
+
+
   render() {
     return (
-      <View>
-        <Connguoi hoten="Teo"/>
-        <Connguoi hoten="Ti"/>
-        <Connguoi hoten="Tun"/>
-      </View>
+      <Navigator
+        initialRoute={{ name: "mhC" }}
+        renderScene={this.renderScene}
+      />
     );
   }
 }
